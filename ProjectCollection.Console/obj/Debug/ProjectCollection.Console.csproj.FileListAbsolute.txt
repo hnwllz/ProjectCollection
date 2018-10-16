@@ -1,8 +1,0 @@
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection.Console\bin\Debug\ProjectCollection.Console.exe.config
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection.Console\bin\Debug\ProjectCollection.Console.exe
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection.Console\bin\Debug\ProjectCollection.Console.pdb
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection.Console\bin\Debug\ProjectCollection.Tools.dll
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection.Console\bin\Debug\ProjectCollection.Tools.pdb
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection.Console\obj\Debug\ProjectCollection.Console.csprojResolveAssemblyReference.cache
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection.Console\obj\Debug\ProjectCollection.Console.exe
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection.Console\obj\Debug\ProjectCollection.Console.pdb

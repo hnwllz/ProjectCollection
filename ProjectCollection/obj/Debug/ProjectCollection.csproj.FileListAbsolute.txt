@@ -1,4 +1,0 @@
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection\bin\Debug\ProjectCollection.dll
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection\bin\Debug\ProjectCollection.pdb
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection\obj\Debug\ProjectCollection.dll
-E:\Work\WorkCodes\NotWork\vs2015\ProjectCollection\ProjectCollection\obj\Debug\ProjectCollection.pdb
