@@ -64,6 +64,9 @@
     <Compile Include="FileHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorts\BubbleSortTest.cs" />
+    <Compile Include="Sorts\InsertSortTest.cs" />
+    <Compile Include="Sorts\SelectSortTest.cs" />
+    <Compile Include="Sorts\SortTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProjectCollection\ProjectCollection.csproj">

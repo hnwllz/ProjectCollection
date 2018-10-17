@@ -36,7 +36,7 @@ namespace ProjectCollection.Test
 
         public static FileStream OpenFile(string filePath)
         {
-            return File.Open(filePath, FileMode.Open,FileAccess.Read);
+            return File.OpenRead(filePath);
         }
     }
 }

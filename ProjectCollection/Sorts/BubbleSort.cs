@@ -9,7 +9,7 @@ namespace ProjectCollection.Sorts
     /// <summary>
     /// 冒泡排序
     /// </summary>
-    public class BubbleSort
+    public class BubbleSort: ISortable
     {
         public void Sort(int[] nums)
         {
@@ -18,6 +18,7 @@ namespace ProjectCollection.Sorts
                 return;
             }
 
+            /*
             int l = nums.Length;
             for(int i = 0; i < l; i++)
             {
@@ -37,8 +38,29 @@ namespace ProjectCollection.Sorts
                 {
                     break;
                 }
+            }*/
+
+            int l = nums.Length;
+            for (int i = 0; i < l; i++)
+            {
+                bool isSorted = true;
+                for(int j = 0; j < l - i - 1; j++)
+                {
+                    if (nums[j] > nums[j + 1])
+                    {
+                        int temp = nums[j];
+                        nums[j] = nums[j+1];
+                        nums[j+1] = temp;
+                        isSorted = false;
+                    }
+                }
+
+                if (isSorted)
+                {
+                    return;
+                }
             }
-            
+
         }
     }
 }

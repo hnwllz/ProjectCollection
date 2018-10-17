@@ -4,18 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
 
 namespace ProjectCollection.Test.Sorts
 {
-    [Xunit.Trait("Sort", "BubbleSort")]
-    public class BubbleSortTest:SortTest
+    [Xunit.Trait("Sort","SelectSort")]
+    public class SelectSortTest:SortTest
     {
-        public BubbleSortTest():base(new BubbleSort())
+        public SelectSortTest():base(new SelectSort())
         {
 
         }
     }
-
-
 }
