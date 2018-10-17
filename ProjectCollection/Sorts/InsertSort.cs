@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectCollection.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,9 +26,7 @@ namespace ProjectCollection.Sorts
                 {
                     if (nums[j] < nums[j-1])
                     {
-                        int tmp = nums[j];
-                        nums[j] = nums[j - 1];
-                        nums[j - 1] = nums[j];
+                        ArrayHelper.Swap(nums, j-1, j);
                         j--;
                     }
                 }

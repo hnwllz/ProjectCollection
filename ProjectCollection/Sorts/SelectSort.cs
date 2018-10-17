@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectCollection.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,9 +33,7 @@ namespace ProjectCollection.Sorts
 
                 if(index != minIndex)
                 {
-                    int temp = nums[index];
-                    nums[index] = nums[minIndex];
-                    nums[minIndex] = temp;
+                    ArrayHelper.Swap(nums, index, minIndex);
                 }
             }
         }
