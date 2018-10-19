@@ -90,27 +90,27 @@ namespace ProjectCollection.Data
         private void FloatDown(int index)
         {
             ValidateIndex(index);
-            int minIndex = index;
+            int maxIndex = index;
             int left = GetLeftChild(index);
             int right = GetRightChild(index);
 
             //获取左右子节点中最小的节点
             if (left <= EndIndex)
             {
-                minIndex = left;
+                maxIndex = left;
             }
             if (right <= EndIndex && InnerArray[left] > InnerArray[right])
             {
-                minIndex = right;
+                maxIndex = right;
             }
             //如果父节点比左右子节点都小，则停止下沉
-            if (InnerArray[index] <= InnerArray[minIndex])
+            if (InnerArray[index] <= InnerArray[maxIndex])
             {
                 return;
             }
 
-            ArrayHelper.Swap(InnerArray, index, minIndex);
-            FloatDown(minIndex);
+            ArrayHelper.Swap(InnerArray, index, maxIndex);
+            FloatDown(maxIndex);
         }
 
         private int GetLeftChild(int index)
