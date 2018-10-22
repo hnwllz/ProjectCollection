@@ -10,7 +10,7 @@ namespace ProjectCollection.Data
     /// <summary>
     /// 最小顶堆
     /// </summary>
-    public class MinHeap : HeapFactory
+    public class MinHeap : IHeap
     {
         public int Capacity { get; private set; }
         private int[] InnerArray { get; set; }
