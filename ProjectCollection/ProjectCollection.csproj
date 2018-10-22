@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Common\ArrayHelper.cs" />
-    <Compile Include="Data\HeapFactory.cs" />
+    <Compile Include="Data\BaseHeap.cs" />
+    <Compile Include="Data\HeapHelper.cs" />
+    <Compile Include="Data\MaxHeap.cs" />
     <Compile Include="Data\MinHeap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorts\BubbleSort.cs" />
