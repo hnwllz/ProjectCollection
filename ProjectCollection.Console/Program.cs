@@ -17,7 +17,8 @@ namespace ProjectCollection.Console
 
             // GenerateNums();
 
-            AVLTreeShow();
+            //AVLTreeShow();
+            RBTreeConsole.Run();
             Console1.ReadKey();
         }
 

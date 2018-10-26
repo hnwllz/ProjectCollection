@@ -42,14 +42,15 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Common\ArrayHelper.cs" />
-    <Compile Include="Data\AVLTree.cs" />
-    <Compile Include="Data\BinarySearchTree.cs" />
+    <Compile Include="Data\RBTree.cs" />
+    <Compile Include="Data\Tree\AVLTree.cs" />
+    <Compile Include="Data\Tree\BinarySearchTree.cs" />
     <Compile Include="Data\Heap\BaseHeap.cs" />
     <Compile Include="Data\Heap\HeapHelper.cs" />
     <Compile Include="Data\Heap\MaxHeap.cs" />
     <Compile Include="Data\Heap\MinHeap.cs" />
-    <Compile Include="Data\IBinaryTree.cs" />
-    <Compile Include="Data\ITreeNode.cs" />
+    <Compile Include="Data\Tree\IBinaryTree.cs" />
+    <Compile Include="Data\Tree\ITreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorts\BubbleSort.cs" />
     <Compile Include="Sorts\CombineSort.cs" />
