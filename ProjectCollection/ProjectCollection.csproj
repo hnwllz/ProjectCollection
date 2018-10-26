@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Common\ArrayHelper.cs" />
+    <Compile Include="Data\AVLTree.cs" />
     <Compile Include="Data\BinarySearchTree.cs" />
     <Compile Include="Data\Heap\BaseHeap.cs" />
     <Compile Include="Data\Heap\HeapHelper.cs" />

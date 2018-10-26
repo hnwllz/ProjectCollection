@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectCollection.Tools;
 using Console1 = System.Console;
+using ProjectCollection.Data;
 
 namespace ProjectCollection.Console
 {
@@ -14,16 +15,9 @@ namespace ProjectCollection.Console
         static void Main(string[] args)
         {
 
-            GenerateNums();
-            /*
-            int a = int.MinValue;
-            int n = 32;
-            while (n-- > 0)
-            {
-                a = a / 2;
-            }
-            Console1.WriteLine(a);
-            */
+            // GenerateNums();
+
+            AVLTreeShow();
             Console1.ReadKey();
         }
 
@@ -44,6 +38,72 @@ namespace ProjectCollection.Console
             }
 
             System.Console.WriteLine("生成完成");
+        }
+
+        static void AVLTreeShow()
+        {
+            AVLTree tree = new AVLTree();
+            tree.Add(1);
+            tree.Add(2);
+            tree.Add(3);
+            tree.Add(4);
+            tree.Add(5);
+            tree.Add(6);
+            PrintAVLTree(tree.Root);
+
+
+            string input;
+            int value;
+            do
+            {
+
+                Console1.Write("Input Value:");
+                input = Console1.ReadLine();
+                if(input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                {
+                    break;
+                }               
+
+                if (int.TryParse(input, out value))
+                {
+                    tree.Add(value);
+                    PrintAVLTree(tree.Root);
+                }                
+            }
+            while (true);
+
+            do
+            {
+
+                Console1.Write("Remove Value:");
+                input = Console1.ReadLine();
+                if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                {
+                    break;
+                }
+
+                if (int.TryParse(input, out value))
+                {
+                    tree.Remove(value);
+                    PrintAVLTree(tree.Root);
+                }
+            }
+            while (true);
+
+            Console1.ReadKey();
+        }
+
+        private static void PrintAVLTree(AVLTreeNode treeNode,int deep=0)
+        {
+            if(treeNode == null)
+            {
+                return;
+            }
+            
+            for (int i = 0; i < deep; i++) { Console1.Write("  "); }
+            Console1.WriteLine(string.Format("|___{0}({1})", treeNode.Value, treeNode.HighValue));
+            PrintAVLTree(treeNode.Left,1+deep);            
+            PrintAVLTree(treeNode.Right,1+deep);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ProjectCollection.Data
 {
     public class BinarySearchTree : IBinaryTree<int>
     {
-        private IBinaryTreeNode<int> Root { get; set; }
+        public IBinaryTreeNode<int> Root { get;private set; }
         private int Count { get; set; }
 
         public void Add(int value)
