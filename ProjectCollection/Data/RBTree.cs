@@ -100,10 +100,20 @@ namespace ProjectCollection.Data
 
                     if (parent == grandpa.Left)
                     {
+                        if(newNode == parent.Right)
+                        {
+                            LeftRotation(parent);
+                        }
+
                         RightRotation(grandpa);
                     }
                     else
                     {
+                        if(newNode == parent.Left)
+                        {
+                            RightRotation(parent);
+                        }
+
                         LeftRotation(grandpa);
                     }
                 }
