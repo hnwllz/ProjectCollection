@@ -109,10 +109,20 @@ namespace ProjectCollection.Data
                 if(cur == treeNode.Right)
                 {
                     treeNode.Right = cur.Right;
+                    if (cur.Right != null)
+                    {
+                        cur.Right.Parent = treeNode;
+                    }
+                    cur.Parent = null;
                 }
                 else
                 {
                     cur.Parent.Left = cur.Right;
+
+                    if (cur.Right != null)
+                    {
+                        cur.Right.Parent = cur.Parent;
+                    }
                     cur.Parent = null;
                 }
             }
@@ -121,6 +131,7 @@ namespace ProjectCollection.Data
                 if(Root == treeNode)
                 {
                     Root = null;
+                    return;
                 }
 
                 if (treeNode.Parent.Left == treeNode)
@@ -143,6 +154,10 @@ namespace ProjectCollection.Data
                 }
 
                 son.Parent = treeNode.Parent;
+                if(treeNode.Parent == null)
+                {
+                    return;
+                }
                 if(treeNode.Parent.Left == treeNode)
                 {
                     treeNode.Parent.Left = son;

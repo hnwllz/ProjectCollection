@@ -308,7 +308,7 @@ namespace ProjectCollection.Data
             return cur;
         }
 
-        private AVLTreeNode FindTreeNode(int value)
+        public AVLTreeNode FindTreeNode(int value)
         {
             AVLTreeNode cur = Root;
             while(cur != null)

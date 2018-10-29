@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BSTTreeConsole.cs" />
+    <Compile Include="AVLTreeConsole.cs" />
+    <Compile Include="FileHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RBTreeConsole.cs" />

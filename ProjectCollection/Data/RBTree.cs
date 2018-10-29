@@ -21,16 +21,21 @@ namespace ProjectCollection.Data
 
         public void Add(int val)
         {
-            if(Root == null)
+
+            RBTreeNode newNode = new RBTreeNode(val) { Left = new Nil(), Right = new Nil() };
+            newNode.Left.Parent = newNode;
+            newNode.Right.Parent = newNode;
+            if (Root == null)
             {
-                Root = new RBTreeNode(val, RBTreeNodeColors.Black);
+                Root = newNode;
+                Root.Color = RBTreeNodeColors.Black;
                 return;
             }
 
-            RBTreeNode newNode = new RBTreeNode(val);
+            
             RBTreeNode cur = Root;
             RBTreeNode father = cur;
-            while(cur != null)
+            while(cur != null && !(cur is Nil))
             {
                 father = cur;
                 if(val <= cur.Value)
@@ -85,7 +90,7 @@ namespace ProjectCollection.Data
                     uncle = grandpa.Left;
                 }
 
-                if (uncle != null && uncle.Color == RBTreeNodeColors.Red)
+                if (uncle.Color == RBTreeNodeColors.Red)
                 {
                     parent.Color = RBTreeNodeColors.Black;
                     uncle.Color = RBTreeNodeColors.Black;
@@ -177,6 +182,304 @@ namespace ProjectCollection.Data
             treeNode.Parent = right;
             right.Left = treeNode;
         }
+
+        public void Remove(int value)
+        {
+            RBTreeNode delNode = FindNode(value);
+            if(delNode == null)
+            {
+                return;
+            }
+
+           Remove(delNode);
+        }
+
+        private void Remove(RBTreeNode z)
+        {
+            RBTreeNode y;
+            if(IsNil(z.Left) || IsNil(z.Right))
+            {
+                y = z;
+            }
+            else
+            {
+                y = FindsuccedNode(z);
+            }
+
+            RBTreeNode x;
+            if (IsNil(y.Left))
+            {
+                x = y.Right;
+            }
+            else
+            {
+                x = y.Left;
+            }
+
+            x.Parent = y.Parent;
+            if(y.Parent == null)
+            {
+                Root = x;
+            }
+            else
+            {
+                if(y == y.Parent.Left)
+                {
+                    y.Parent.Left = x;
+                }
+                else
+                {
+                    y.Parent.Right = x;
+                }
+            }
+
+            if(y != z)
+            {
+                z.Value = y.Value;
+            }
+
+            if(y.Color == RBTreeNodeColors.Black)
+            {
+               RB_Delete_Fixup(x);
+            }
+
+            return;
+        }
+
+        private void RB_Delete_Fixup(RBTreeNode x)
+        {
+            RBTreeNode bro = null;
+            while(x != Root && x.Color == RBTreeNodeColors.Black)
+            {
+                if(x == x.Parent.Left)
+                {
+                    bro = x.Parent.Right;
+                    if (bro.Color == RBTreeNodeColors.Red)
+                    {
+                        bro.Color = RBTreeNodeColors.Black;
+                        x.Parent.Color = RBTreeNodeColors.Red;
+                        LeftRotation(x.Parent);
+                        bro = x.Parent.Right;
+                    }
+
+                    if(bro.Left.Color == RBTreeNodeColors.Black &&
+                        bro.Right.Color == RBTreeNodeColors.Black)
+                    {
+                        bro.Color = RBTreeNodeColors.Red;
+                        x = x.Parent;
+                    }
+                    else
+                    {
+                        if (bro.Left.Color == RBTreeNodeColors.Red)
+                        {
+                            bro.Left.Color = RBTreeNodeColors.Black;
+                            bro.Color = RBTreeNodeColors.Red;
+                            RightRotation(bro);
+                            bro = x.Parent.Right;
+                        }
+
+                        bro.Color = x.Parent.Color;
+                        x.Parent.Color = RBTreeNodeColors.Black;
+                        bro.Right.Color = RBTreeNodeColors.Black;
+                        LeftRotation(x.Parent);
+                        x = Root;
+                    }
+                }
+                else
+                {
+                    bro = x.Parent.Left;
+                    if (bro.Color == RBTreeNodeColors.Red)
+                    {
+                        bro.Color = RBTreeNodeColors.Black;
+                        x.Parent.Color = RBTreeNodeColors.Red;
+                        RightRotation(x.Parent);
+                        bro = x.Parent.Left;
+                    }
+
+                    if (bro.Left.Color == RBTreeNodeColors.Black &&
+                        bro.Right.Color == RBTreeNodeColors.Black)
+                    {
+                        bro.Color = RBTreeNodeColors.Red;
+                        x = x.Parent;
+                    }
+                    else
+                    {
+                        if (bro.Right.Color == RBTreeNodeColors.Red)
+                        {
+                            bro.Left.Color = RBTreeNodeColors.Black;
+                            bro.Color = RBTreeNodeColors.Red;
+                            LeftRotation(bro);
+                            bro = x.Parent.Right;
+                        }
+
+                        bro.Color = x.Parent.Color;
+                        x.Parent.Color = RBTreeNodeColors.Black;
+                        bro.Right.Color = RBTreeNodeColors.Black;
+                        RightRotation(x.Parent);
+                        x = Root;
+                    }
+                }                
+            }
+
+            x.Color = RBTreeNodeColors.Black;
+        }
+
+        private bool IsNil(RBTreeNode node)
+        {
+            return node is Nil;
+        }
+
+        /*
+        private RBTreeNode Remove(RBTreeNode node)
+        {
+            if ( !IsNil(node.Left)  && !IsNil(node.Right))
+            {
+                RBTreeNode succedNode = FindsuccedNode(node);
+                node.Value = succedNode.Value;
+
+                return Remove(succedNode);
+            }
+            else if (IsNil(node.Left) && IsNil(node.Right))
+            {
+                if (node.Parent == null)
+                {
+                    Root = null;
+                    return null;
+                }
+                else if (node == node.Parent.Left)
+                {
+                    node.Parent.Left = new Nil(node.Parent);
+                    return node.Parent.Left;
+                }
+                else
+                {
+                    node.Parent.Right = new Nil(node.Parent);
+                    return node.Parent.Right;
+                }
+            }
+            else
+            {
+                RBTreeNode childNode = IsNil(node.Left) ? node.Right : node.Left;
+                if (node.Parent == null)
+                {
+                    Root = childNode;
+                }
+                else if (node == node.Parent.Left)
+                {
+                    node.Parent.Left = childNode;
+                    childNode.Parent = node.Parent.Left;
+                }
+                else
+                {
+                    node.Parent.Right = childNode;
+                    childNode.Parent = node.Parent.Right;
+                }
+
+                return childNode;
+            }
+        }
+        */
+
+        private RBTreeNode FindsuccedNode(RBTreeNode delNode)
+        {
+            RBTreeNode node = delNode.Right;
+            RBTreeNode father = node;
+            while(!IsNil(node))
+            {
+                father = node;
+                node = node.Left;
+            }
+
+            return father;
+        }
+
+        public RBTreeNode FindNode(int value)
+        {
+            RBTreeNode node = Root;
+            while(IsNil(node))
+            {
+                if(node.Value == value)
+                {
+                    return node;
+                }
+
+                if(value <= node.Value)
+                {
+                    node = node.Left;
+                }
+                else
+                {
+                    node = node.Right;
+                }
+            }
+
+            return null;
+        }
+
+
+        private void FixDeledTreeBalance(RBTreeNode delNode)
+        {
+            if(delNode == null || delNode.Parent == null)
+            {
+                return;
+            }
+
+            
+            RBTreeNode fahter = delNode.Parent;
+            RBTreeNode bro = fahter.Left;
+            bool isLeft = (fahter.Left == delNode);          
+            if (delNode == fahter.Left)
+            {
+                bro = delNode.Parent.Right;
+            }
+
+            //Case 1: father is red
+            if(fahter.Color == RBTreeNodeColors.Red)
+            {
+                fahter.Color = RBTreeNodeColors.Black;
+                bro.Color = RBTreeNodeColors.Red;
+
+                return;
+            }
+
+            //Case 2:parent is black,brother is red
+            if(bro.Color == RBTreeNodeColors.Red)
+            {
+                fahter.Color = RBTreeNodeColors.Red;
+                bro.Color = RBTreeNodeColors.Black;
+                if(isLeft)
+                {
+                    LeftRotation(fahter);
+                }
+                else
+                {
+                    RightRotation(fahter);
+                }
+
+                return;
+            }
+
+            //case 3： parent is black,brohter is black,brother right is red
+            if(bro.Right != null && bro.Right.Color == RBTreeNodeColors.Red)
+            {
+                LeftRotation(bro);
+                FixDeledTreeBalance(delNode);
+
+                return;
+            }
+            //case 4： parent is black,brohter is black,brother left is red
+            if (bro.Left!=null && bro.Left.Color == RBTreeNodeColors.Red)
+            {
+                RightRotation(bro);
+                FixDeledTreeBalance(delNode);
+
+                return;
+            }
+
+            //case 5： parent is black,brohter is black,sons of brother  is black
+            bro.Color = RBTreeNodeColors.Red;
+            FixDeledTreeBalance(fahter);
+        }
     }
 
     public class RBTreeNode
@@ -201,6 +504,31 @@ namespace ProjectCollection.Data
         public RBTreeNode Parent { get; set; }
 
         public RBTreeNodeColors Color { get; set; }
+    }
+
+    public class Nil : RBTreeNode
+    {
+        public Nil()
+        {
+            Value = 0;
+            Color = RBTreeNodeColors.Black;
+        }
+
+        public Nil(RBTreeNode parent)
+        {
+            Value = 0;
+            Color = RBTreeNodeColors.Black;
+            Parent = parent;
+        }
+
+        private static Nil NullInstance = new Nil();
+        public static Nil Null
+        {
+            get
+            {
+                return NullInstance;
+            }
+        }
     }
 
     public enum RBTreeNodeColors

@@ -12,8 +12,49 @@ namespace ProjectCollection.Console
     {
         public static void Run()
         {
+            TimeSpendTest();
+        }
+
+        private static void TimeSpendTest()
+        {
+            RBTree tree = new RBTree();
+            DateTime start = DateTime.Now;
+            FileHelper.ReadFile(@"E:\数据\测试数据\numbers.txt",(num)=>tree.Add(num));
+            Console1.WriteLine("创建树耗时:"+(DateTime.Now - start).TotalMilliseconds);
+
+            start = DateTime.Now;
+            FileHelper.ReadFile(@"E:\数据\测试数据\numbers.txt", (num) => tree.FindNode(num));
+            Console1.WriteLine("查找树耗时:" + (DateTime.Now - start).TotalMilliseconds);
+
+            start = DateTime.Now;
+            FileHelper.ReadFile(@"E:\数据\测试数据\numbers.txt", (num) => tree.Remove(num));
+            Console1.WriteLine("清空树耗时:" + (DateTime.Now - start).TotalMilliseconds);
+        }
+
+        private static void SimpleTest()
+        {
             RBTree tree = CreateTree();
             PrintTree(tree.Root);
+
+            string input;
+            int value;
+            do
+            {
+
+                Console1.Write("Input Value:");
+                input = Console1.ReadLine();
+                if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                {
+                    break;
+                }
+
+                if (int.TryParse(input, out value))
+                {
+                    tree.Remove(value);
+                    PrintTree(tree.Root);
+                }
+            }
+            while (true);
         }
 
         private static RBTree CreateTree()
@@ -36,7 +77,7 @@ namespace ProjectCollection.Console
         private static void PrintTree(RBTreeNode treeNode,int deep=0)
         {
           
-            if (treeNode == null)
+            if (treeNode == null || treeNode is Nil)
             {
                 return;
             }
