@@ -66,6 +66,7 @@
     <Compile Include="Data\Tree\BSTTest.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionLibrary\SimpleCalcutorTest.cs" />
     <Compile Include="Sorts\BubbleSortTest.cs" />
     <Compile Include="Sorts\CombineSortTest.cs" />
     <Compile Include="Sorts\HeapSortTest.cs" />
