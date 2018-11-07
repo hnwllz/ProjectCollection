@@ -18,12 +18,13 @@ namespace ProjectCollection.Console
             // GenerateNums();
 
             //AVLTreeShow();
-            //Console1.WriteLine("-------------红黑树------------");
-            //RBTreeConsole.Run();
-            //Console1.WriteLine("-------------平衡树------------");
-            //AVLTreeConsole.Run();
-            //Console1.WriteLine("-------------搜索树------------");
-            //BSTTreeConsole.Run();
+            Console1.WriteLine("-------------红黑树------------");
+            RBTreeConsole.Run();
+            Console1.WriteLine("-------------平衡树------------");
+            AVLTreeConsole.Run();
+            Console1.WriteLine("-------------搜索树------------");
+            BSTTreeConsole.Run();
+            Console1.WriteLine("-------------B树------------");
             BtreeConsole.Run();
             Console1.ReadKey();
         }

@@ -12,18 +12,18 @@ namespace ProjectCollection.Console
     {
         public static void Run()
         {
-            //TimeSpendTest();
-            SimpleTest();
+            TimeSpendTest();
+            //SimpleTest();
         }
 
         private static void TimeSpendTest()
         {
-            BTree tree = new BTree(5);
+            BTree tree = new BTree(10);
             DateTime start = DateTime.Now;
             FileHelper.ReadFile(@"E:\数据\测试数据\numbers.txt",(num)=>tree.Add(num));
             Console1.WriteLine("创建树耗时:"+(DateTime.Now - start).TotalMilliseconds);
 
-            /*
+           
             start = DateTime.Now;
             FileHelper.ReadFile(@"E:\数据\测试数据\numbers.txt", (num) => tree.FindNode(num));
             Console1.WriteLine("查找树耗时:" + (DateTime.Now - start).TotalMilliseconds);
@@ -31,7 +31,7 @@ namespace ProjectCollection.Console
             start = DateTime.Now;
             FileHelper.ReadFile(@"E:\数据\测试数据\numbers.txt", (num) => tree.Remove(num));
             Console1.WriteLine("清空树耗时:" + (DateTime.Now - start).TotalMilliseconds);
-            */
+            
         }
 
         private static void SimpleTest()
@@ -41,10 +41,28 @@ namespace ProjectCollection.Console
 
             string input;
             int value;
+            //do
+            //{
+
+            //    Console1.Write("Input Add Value:");
+            //    input = Console1.ReadLine();
+            //    if (input.Trim().Equals("", StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        break;
+            //    }
+
+            //    if (int.TryParse(input, out value))
+            //    {
+            //        tree.Add(value);
+            //        PrintTree(tree.Root);
+            //    }
+            //}
+            //while (true);
+
             do
             {
 
-                Console1.Write("Input Value:");
+                Console1.Write("Input Remove Value:");
                 input = Console1.ReadLine();
                 if (input.Trim().Equals("", StringComparison.OrdinalIgnoreCase))
                 {
@@ -53,32 +71,8 @@ namespace ProjectCollection.Console
 
                 if (int.TryParse(input, out value))
                 {
-                    tree.Add(value);
+                    tree.Remove(value);
                     PrintTree(tree.Root);
-                }
-            }
-            while (true);
-
-            do
-            {
-
-                Console1.Write("Input Value:");
-                input = Console1.ReadLine();
-                if (input.Trim().Equals("", StringComparison.OrdinalIgnoreCase))
-                {
-                    break;
-                }
-
-                if (int.TryParse(input, out value))
-                {
-                    if (tree.Find(value) == null)
-                    {
-                        Console1.WriteLine("不存在");
-                    }
-                    else
-                    {
-                        Console1.WriteLine("存在");
-                    }
                 }
             }
             while (true);
@@ -87,10 +81,10 @@ namespace ProjectCollection.Console
         private static BTree CreateTree()
         {
             BTree tree = new BTree(5);
-            //for(int i = 100; i > 0; i--)
-            //{
-            //    tree.Add(i);
-            //}
+            for (int i = 20; i > 0; i--)
+            {
+                tree.Add(i);
+            }
 
             return tree;
         }
